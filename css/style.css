@@ -1,0 +1,18 @@
+body{
+    font-family: roboto;
+}
+
+.center{
+    justify-items: center;
+    text-align: center;
+}
+
+.right{
+    justify-content: right;
+}
+
+.p-box{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
