@@ -2,17 +2,18 @@ body{
     font-family: roboto;
 }
 
-.center{
-    justify-items: center;
-    text-align: center;
+.center-content{
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.right{
-    justify-content: right;
+.brand{
+    width: 90px;
+    height: 90px;
+    display: inline-block;
 }
 
-.p-box{
-    padding-left: 10px;
-    padding-right: 10px;
+.brand-name{
+    font-size: 20px;
+    font-family: 'Marck Script', cursive;
 }
-

@@ -23,6 +23,7 @@ server.engine("handlebars", handlebars({ defaultLayout: "main" }))
 server.set('view engine', 'handlebars')
 server.use("/source", express.static("source"))
 server.use("/css", express.static("css"))
+server.use("/img", express.static("img"))
 
 //Rotas e Templates
 
