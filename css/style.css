@@ -1,19 +1,37 @@
 body{
-    font-family: roboto;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.center-content{
-    margin-left: 5%;
-    margin-right: 5%;
+.navbar{
+    background-color: transparent;
 }
 
-.brand{
-    width: 90px;
-    height: 90px;
-    display: inline-block;
+.transparent-back:hover{
+    background-color: transparent !important;
+}
+
+.transparent-back{
+    background-color: transparent !important;
 }
 
 .brand-name{
-    font-size: 20px;
+    font-size: 35px;
     font-family: 'Marck Script', cursive;
+    
+}
+
+.hero{
+    background-image: url(../img/pexels-karl-solano-2883049.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*.home-page{
+    background-image: url(../img/pexels-karl-solano-2883049.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 1345px;
+    height: 720px;
 }
