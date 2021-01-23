@@ -1,37 +1,54 @@
-body{
+body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.navbar{
+.navbar {
     background-color: transparent;
 }
+.navbar-start > a, .navbar-link{
+    text-shadow: 2px 2px 4px black;
+}
 
-.transparent-back:hover{
+.transparent-back:hover {
     background-color: transparent !important;
 }
 
-.transparent-back{
+.has-background-transparent {
     background-color: transparent !important;
 }
 
-.brand-name{
-    font-size: 35px;
+.brand-name {
+    font-size: 45px;
     font-family: 'Marck Script', cursive;
-    
+    margin-bottom: 300px;
+    text-align: center;
 }
 
-.hero{
+.brand-name > span{
+    text-shadow: 2px 2px 4px black;
+}
+
+.hero {
     background-image: url(../img/pexels-karl-solano-2883049.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
-/*.home-page{
-    background-image: url(../img/pexels-karl-solano-2883049.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    width: 1345px;
-    height: 720px;
+.about{
+    background-color: #222831;
+    width: 100%;
+    height: 300px;
+    color: #eeeeeeee;
+    text-align: justify;
 }
+
+.about-title{
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.is-vertical-center {
+    display: flex;
+    align-items: center;
+  }
