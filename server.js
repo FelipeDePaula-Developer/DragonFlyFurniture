@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const handlebars = require('express-handlebars')
 const mysql = require('mysql')
 const cors = require('cors')
 const server = express()
@@ -8,6 +7,8 @@ const urlencodeParser = bodyParser.urlencoded({ extended: false })
 
 server.use(cors())
 server.use(bodyParser.json())
+
+
 const sql = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -18,33 +19,14 @@ const sql = mysql.createConnection({
 
 sql.query("use crud")
 
-//Template Engine
-server.engine("handlebars", handlebars({ defaultLayout: "main" }))
-server.set('view engine', 'handlebars')
-server.use("/source", express.static("source"))
-server.use("/css", express.static("css"))
-server.use("/img", express.static("img"))
-
-//Rotas e Templates
-
-server.get("/", (req, res) => {
-    res.render("index")
-})
-
-
 /*C.R.U.D*/
 
 server.get('/usuarios/consulta', (req, res) => {
 
 })
 
-server.get("/cadastro", (req, res) => {
-    res.render('cadastro')
-})
-
-server.post('/regComplete', urlencodeParser, (req, res) => {
-    sql.query("insert into user values (?,?,?)", [req.body.id, req.body.name, req.body.age])
-    res.render('regComplete')
+server.post('/usuarios/cadastro', urlencodeParser, (req, res) => {
+    sql.query(`insert into cadUser(userEmail, userPassword, firstName, lastName, zipCode, street, streetNumber, city, state , userCPF, phoneNumber) values("${req.body.email}",  "${req.body.password}",  "${req.body.firstName}", "${req.body.lastName}", "${req.body.zipCode}", "${req.body.street}", "${req.body.streetNumber}", "${req.body.city}", "${req.body.state}", "${req.body.userCPF}", "${req.body.phoneNumber}")`)
 })
 
 server.put('/usuarios/consulta/:index', (req, res) => {
@@ -55,5 +37,5 @@ server.delete('/usuarios/excluir/:index', (req, res) => {
 
 })
 
-server.listen(3030)
 
+server.listen(3030)
