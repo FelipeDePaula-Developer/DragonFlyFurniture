@@ -25,38 +25,45 @@ sql.query("use crud")
 server.post('/usuarios/login', (req, res) => {
     sql.query(`select userEmail, userPassword from cadUser where userEmail = "${req.body.email}" and userPassword = "${req.body.password}"`, (err, result, fields) => {
         const queryResult = result[0]
-        if(queryResult != undefined){
-            res.send()
-        }else{
-            res.send()
+        if (queryResult != undefined) {
+
+            res.send(true)
+
+        } else {
+
+            res.send(false)
+
         }
     })
 })
 
 server.post('/usuarios/cadastro', (req, res) => {
-    sql.query(`insert into cadUser(
-        userEmail, 
-        userPassword, 
-        firstName, 
-        lastName, 
-        zipCode, 
-        street, 
-        streetNumber, 
-        city, 
-        state, 
-        userCPF, 
-        phoneNumber) values(
-        "${req.body.email}",  
-        "${req.body.password}", 
-        "${req.body.firstName}", 
-        "${req.body.lastName}", 
-        "${req.body.zipCode}", 
-        "${req.body.street}", 
-        "${req.body.streetNumber}", 
-        "${req.body.city}", 
-        "${req.body.state}", 
-        "${req.body.userCPF}", 
-        "${req.body.phoneNumber}")`)
+
+    sql.query(`select userEmail, userCPF from cadUser where userEmail = "${req.body.email}" and userCPF = "${req.body.userCPF}"`, (err, result, fields) => {
+        const queryResult = result[0]
+        if (queryResult == undefined) {
+
+            sql.query(`insert into cadUser(userEmail, userPassword, firstName, lastName, zipCode, street, streetNumber, city, state, userCPF, phoneNumber) values(
+                "${req.body.email}",  
+                "${req.body.password}", 
+                "${req.body.firstName}", 
+                "${req.body.lastName}", 
+                "${req.body.zipCode}", 
+                "${req.body.street}", 
+                "${req.body.streetNumber}", 
+                "${req.body.city}", 
+                "${req.body.state}", 
+                "${req.body.userCPF}", 
+                "${req.body.phoneNumber}")`)
+
+                res.send(true)
+
+        }else{
+
+            res.send(false)
+
+        }
+    })
 })
 
 server.listen(3030)

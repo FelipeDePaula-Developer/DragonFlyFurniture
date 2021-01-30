@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Móveis DragonFly</title>
+</head>
+
+<body>
+
+    <form class="cadUser" method="post">
+        <label for="email">Email: </label>
+        <input type="text" name="email" id="email">
+        <label for="password">Senha: </label>
+        <input type="password" name="password" id="password">
+        <label for="firstName">Primeiro Nome: </label>
+        <input type="text" name="firstName" id="firstName">
+        <label for="lastName">Sobre Nome: </label>
+        <input type="text" name="lastName" id="lastName">
+        <label for="zipCode">CEP: </label>
+        <input type="text" name="zipCode" id="zipCode">
+        <label for="street">Logradouro: </label>
+        <input type="text" name="street" id="street">
+        <label for="streetNumber">Nº: </label>
+        <input type="text" name="streetNumber" id="streetNumber">
+        <label for="city">Cidade: </label>
+        <input type="text" name="city" id="city">
+        <label for="state">Estado: </label>
+        <input type="text" name="state" id="state">
+        <label for="userCPF">CPF: </label>
+        <input type="text" name="userCPF" id="userCPF">
+        <label for="phoneNumber">Telefone Celular: </label>
+        <input type="text" name="phoneNumber" id="phoneNumber">
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script src="../source/axios.min.js"></script>
+    <script>
+        document.querySelector(".cadUser").addEventListener("submit", async event => {
+            event.preventDefault()
+
+            const email = document.querySelector("#email").value
+            const password = document.querySelector("#password").value
+            const firstName = document.querySelector("#firstName").value
+            const lastName = document.querySelector("#lastName").value
+            const zipCode = document.querySelector("#zipCode").value
+            const street = document.querySelector("#street").value
+            const streetNumber = document.querySelector("#streetNumber").value
+            const city = document.querySelector("#city").value
+            const state = document.querySelector("#state").value
+            const userCPF = document.querySelector("#userCPF").value
+            const phoneNumber = document.querySelector("#phoneNumber").value
+
+            axios.post("http://localhost:3030/usuarios/cadastro",
+                {
+                    email: `${email}`,
+                    password: `${password}`,
+                    firstName: `${firstName}`,
+                    lastName: `${lastName}`,
+                    zipCode: `${zipCode}`,
+                    street: `${street}`,
+                    streetNumber: `${streetNumber}`,
+                    city: `${city}`,
+                    state: `${state}`,
+                    userCPF: `${userCPF}`,
+                    phoneNumber: `${phoneNumber}`
+                }
+            ).then((response) => {
+                if (response.data == true) {
+
+                    window.location.href = "/views/pagUser.html"
+
+                } else {
+
+                    let checkErr = document.querySelector(".logErr")
+                    if (checkErr == null) {
+
+                        let errLog = document.createElement("div")
+                        errLog.className = "logErr"
+                        let messageErr = document.createTextNode("Dados já constam no banco")
+                        errLog.appendChild(messageErr)
+                        let logForm = document.querySelector(".cadUser")
+                        document.body.insertBefore(errLog, logForm)
+
+                    }
+
+                }
+            }).catch((err) => {
+
+
+            })
+
+        })
+    </script>
+</body>
+
+</html>

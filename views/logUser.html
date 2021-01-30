@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form class="logUser" method="GET">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email">
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">Logar</button>
+    </form>
+
+    <script src="../source/axios.min.js"></script>
+    <script>
+        document.querySelector(".logUser").addEventListener("submit", async => {
+            event.preventDefault()
+
+            const email = document.querySelector("#email").value
+            const password = document.querySelector("#password").value
+
+            axios.post("http://localhost:3030/usuarios/login", {
+                email: `${email}`,
+                password: `${password}`
+            }).then(response => {
+                if (response.data == true) {
+
+                    window.location.href = "/views/pagUser.html"
+
+                } else {
+                    let checkErr = document.querySelector(".logErr")
+                    if (checkErr == null) {
+
+                        let errLog = document.createElement("div")
+                        errLog.className = "logErr"
+                        let messageErr = document.createTextNode("Email ou Senha incorretos")
+                        errLog.appendChild(messageErr)
+                        let logForm = document.querySelector(".logUser")
+                        document.body.insertBefore(errLog, logForm)
+                        
+                    }
+                }
+            }).catch(err => {
+
+            })
+        })
+    </script>
+</body>
+
+</html>
